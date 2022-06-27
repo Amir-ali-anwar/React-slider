@@ -5,7 +5,38 @@ import data from "./data";
 function App() {
   const [slide, Setslide] = useState(data);
   const [index, setindex] = useState(0);
-  console.log(slide);
+  const nextSlide = () => {
+    setindex((oldIndex) => {
+      let index = oldIndex + 1
+      if (index > slide.length - 1) {
+        index = 0
+      }
+      return index
+    })
+  }
+  const prevSlide = () => {
+    setindex((oldIndex) => {
+      let index = oldIndex - 1
+      if (index < 0) {
+        index = slide.length - 1
+      }
+      return index
+    })
+  }
+  useEffect(() => {
+    let slider = setInterval(() => {
+      setindex((oldIndex) => {
+        let index = oldIndex + 1
+        if (index > slide.length - 1) {
+          index = 0
+        }
+        return index
+      })
+    }, 3000)
+    return () => {
+      clearInterval(slider)
+    }
+  }, [index])
   return (
     <section className="section">
       <div className="title">
@@ -23,7 +54,7 @@ function App() {
             slideindex === index - 1 ||
             (index === 0 && slideindex === slide.length - 1)
           ) {
-            slideClass = "lastSlide";
+            slideClass = 'lastSlide'
           }
           return (
             <article className={slideClass} key={slideindex}>
@@ -36,21 +67,13 @@ function App() {
         })}
         <button
           className="prev"
-          onClick={() =>
-            setindex((old) => {
-              return old - 1;
-            })
-          }
+          onClick={()=>prevSlide}
         >
           <FiChevronLeft />
         </button>
         <button
           className="next"
-          onClick={() =>
-            setindex((old) => {
-              return old + 1;
-            })
-          }
+          onClick={()=>nextSlide}
         >
           <FiChevronRight />
         </button>
