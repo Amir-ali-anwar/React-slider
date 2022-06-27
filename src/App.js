@@ -11,7 +11,7 @@ function App() {
       <div className='section-center'>
        {slide?.map((item)=>(
          <article>
-         <img src={item.image} alt="" />
+         <img src={item.image} alt="" className='person-img' />
          <h4>{item.name}</h4>
          <p className='title'>{item.title}</p>
          <p className='text'>{item.quote}</p>
