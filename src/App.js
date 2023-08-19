@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
+// eslint-disable-next-line
 import { FaQuoteRight } from "react-icons/fa";
 import data from "./data";
 function App() {
+  // eslint-disable-next-line
   const [slide, Setslide] = useState(data);
   const [index, setindex] = useState(0);
   const nextSlide = () => {
@@ -36,6 +38,7 @@ function App() {
     return () => {
       clearInterval(slider)
     }
+    
   }, [index])
   return (
     <section className="section">
